@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import AvaterIcon from "@/assets/user.png";
 import NavLink from "@/components/shared/NavLink";
+import Link from "next/link";
 
 const NavBar = () => {
   const navLinks = [
@@ -14,7 +15,7 @@ const NavBar = () => {
       <div className="navbar ">
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div tabIndex={0} role="button" className="btn btn-ghost sm:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -41,7 +42,7 @@ const NavBar = () => {
             </ul>
           </div>
         </div>
-        <div className="navbar-center hidden lg:flex">
+        <div className="navbar-center hidden sm:flex">
           <ul className="menu menu-horizontal px-1">
             {navLinks.map((link, i) => (
               <NavLink key={i} pathName={link.linkName} path={link.path} />
@@ -50,7 +51,9 @@ const NavBar = () => {
         </div>
         <div className="navbar-end gap-3">
           <Image src={AvaterIcon} height={40} width={40} alt="Avater" />
-          <a className="btn bg-[#403F3F] text-white">Login</a>
+          <Link className="btn bg-[#403F3F] text-white" href={"/signin"}>
+            Login
+          </Link>
         </div>
       </div>
     </div>
