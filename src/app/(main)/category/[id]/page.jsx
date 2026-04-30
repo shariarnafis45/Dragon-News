@@ -1,10 +1,11 @@
 import LeftSideBar from "@/components/homepage/news/LeftSideBar";
+import NewsCard from "@/components/homepage/news/NewsCard";
 import RightSideBar from "@/components/homepage/news/RightSideBar";
 import { getAllCategories, getNewsByCategory } from "@/lib/data";
 
-const NewsPage = async({params}) => {
-    const {id} = await params;
-    const categories = await getAllCategories();
+const NewsPage = async ({ params }) => {
+  const { id } = await params;
+  const categories = await getAllCategories();
   const news = await getNewsByCategory(id);
   return (
     <div>
@@ -16,9 +17,7 @@ const NewsPage = async({params}) => {
           <h2 className="font-semibold text-xl">Dragon News Home</h2>
           <div className="mt-5">
             {news.map((n) => (
-              <div key={n._id} className="p-3 border mb-3 rounded-md">
-                <h2>{n.title}</h2>
-              </div>
+              <NewsCard key={n._id} news={n}></NewsCard>
             ))}
           </div>
         </div>
