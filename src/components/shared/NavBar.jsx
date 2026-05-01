@@ -1,10 +1,20 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import AvaterIcon from "@/assets/user.png";
 import NavLink from "@/components/shared/NavLink";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
+import { redirect } from "next/navigation";
 
 const NavBar = () => {
+  const { data: session, isPending } = authClient.useSession();
+  const user = session?.user;
+  const handleSignOut = async () => {
+    await authClient.signOut();
+    redirect("/signin");
+  };
+
   const navLinks = [
     { path: "/", linkName: "Home" },
     { path: "/about", linkName: "About" },
@@ -50,10 +60,32 @@ const NavBar = () => {
           </ul>
         </div>
         <div className="navbar-end gap-3">
-          <Image src={AvaterIcon} height={40} width={40} alt="Avater" />
-          <Link className="btn bg-[#403F3F] text-white" href={"/signin"}>
-            Login
-          </Link>
+          {isPending ? <span className="loading loading-infinity loading-xl"></span> : user ? (
+            <div className="flex gap-3 items-center">
+              <h2>Welcome Back ! {user.name}</h2>
+              <Image
+                src={user.image || AvaterIcon}
+                height={40}
+                width={40}
+                alt="Avater"
+              />
+              <button
+                onClick={handleSignOut}
+                className="btn bg-[#403F3F] text-white"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <div className="space-x-2">
+              <Link className="btn bg-[#403F3F] text-white" href={"/signin"}>
+              Login
+            </Link>
+            <Link className="btn bg-[#403F3F] text-white" href={"/signup"}>
+              Signup
+            </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>
