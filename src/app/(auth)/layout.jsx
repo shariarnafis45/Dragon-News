@@ -4,8 +4,10 @@ import React from "react";
 const AuthLayout = ({ children }) => {
   return (
     <>
-      <NavBar />
-      <main>{children}</main>
+      <header>
+        <NavBar />
+      </header>
+      <main className="bg-[#F3F3F3]">{children}</main>
     </>
   );
 };

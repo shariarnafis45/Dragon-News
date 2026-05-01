@@ -11,7 +11,7 @@ const NavBar = () => {
     { path: "/career", linkName: "Career" },
   ];
   return (
-    <div className="max-w-7xl mx-auto mt-2 px-5">
+    <div className="max-w-7xl mx-auto mt-6 px-5">
       <div className="navbar ">
         <div className="navbar-start">
           <div className="dropdown">
