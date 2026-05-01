@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -10,8 +11,20 @@ const SignUpPage = () => {
     watch,
     formState: { errors },
   } = useForm();
-  const handleSignUpSubmit = (data) => {
-    console.log(data);
+  const handleSignUpSubmit = async (data) => {
+    const { data: res, error } = await authClient.signUp.email({
+      name: data.name, // required
+      email: data.email, // required
+      password: data.password, // required
+      image: data.image,
+      callbackURL: "/",
+    });
+    if(error){
+      alert(error.message)
+    }
+    if(res){
+      alert('Signup Successfull')
+    }
   };
 
   return (
@@ -63,7 +76,12 @@ const SignUpPage = () => {
               <span className="text-red-600">{errors.email.message}</span>
             )}
             <label className="label mt-1 font-semibold">
-              <input required type="checkbox" defaultChecked className="checkbox font-semibold" />
+              <input
+                required
+                type="checkbox"
+                defaultChecked
+                className="checkbox font-semibold"
+              />
               Accept Term & Conditions
             </label>
 

@@ -1,12 +1,25 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
 
 const SignInPage = () => {
   const { register, handleSubmit, watch , formState : {errors} } = useForm();
-  const handleSignInSubmit = (data) => {
-    console.log(data);
+  const handleSignInSubmit = async(data) => {
+    const { data: res, error } = await authClient.signIn.email({
+          name: data.name, // required
+          email: data.email, // required
+          password: data.password, // required
+          image: data.image,
+          callbackURL: "/",
+        });
+        if(error){
+          alert(error.message)
+        }
+        if(res){
+          alert('SignIn Successfull')
+        }
   };
   
   return (
