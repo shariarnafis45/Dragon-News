@@ -4,14 +4,16 @@ import { FaFacebook, FaGithub, FaGoogle, FaInstagram, FaTwitter } from 'react-ic
 import SwimmingImg from "@/assets/swimming.png"
 import ClassImg from "@/assets/class.png"
 import PlayGroundImg from "@/assets/playground.png"
+import Goggle from '@/components/auth/Goggle';
+import Github from '@/components/auth/Github';
 
 const RightSideBar = () => {
     return (
         <div>
             <h2 className="font-semibold text-xl">Login With</h2>
             <div className='flex flex-col gap-3 mt-5'>
-                <button className='btn border-[#4066bc] text-[#4066bc]'><FaGoogle /> Login With Google</button>
-                <button className='btn border-black'><FaGithub /> Login With Github</button>
+                <Goggle/>
+                <Github/>
             </div>
             <div className='flex flex-col gap-4 mt-5'>
                 <h2 className="font-semibold   ">Find Us On</h2>
