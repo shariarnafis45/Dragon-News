@@ -4,13 +4,14 @@ import React from 'react';
 import { FaGithub } from 'react-icons/fa';
 
 const Github = () => {
+    
     const handleGithubSignIn = async () => {
         const data = await authClient.signIn.social({
           provider: "github",
         });
       };
     return (
-        <button onClick={handleGithubSignIn} className='btn border-black'><FaGithub /> Login With Github</button>
+        <button onClick={handleGithubSignIn} className='btn border-black w-full'><FaGithub /> Login With Github</button>
     );
 };
 

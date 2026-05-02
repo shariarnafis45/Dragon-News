@@ -1,4 +1,6 @@
 "use client";
+import Github from "@/components/auth/Github";
+import Goggle from "@/components/auth/Goggle";
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -56,7 +58,7 @@ const SignInPage = () => {
                 placeholder="Enter your password"
               />
               <button
-              type="button"
+                type="button"
                 onClick={() => setIsShow(!isShow)}
                 className="text-lg absolute right-3 top-11"
               >
@@ -76,6 +78,10 @@ const SignInPage = () => {
             Register
           </Link>
         </p>
+        <div className="space-y-4 mt-4">
+          <Goggle />
+          <Github />
+        </div>
       </div>
     </div>
   );
